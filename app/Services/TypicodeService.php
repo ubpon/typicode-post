@@ -12,7 +12,7 @@ final readonly class TypicodeService
 
     public function __construct()
     {
-        $this->client = new Client();
+        $this->client = new Client;
     }
 
     public function listPosts()
@@ -21,6 +21,7 @@ final readonly class TypicodeService
             $response = $this->client->get('https://jsonplaceholder.typicode.com/posts');
             $data = json_decode($response->getBody(), true);
             Log::info('Attempted to get post from API', ['response' => $data]);
+
             return $data;
         });
     }
@@ -32,10 +33,11 @@ final readonly class TypicodeService
     {
         return rescue(function () use ($post) {
             $response = $this->client->post('https://jsonplaceholder.typicode.com/posts', [
-                'json' => $post
+                'json' => $post,
             ]);
             $data = json_decode($response->getBody(), true);
             Log::info('Store a post', ['response' => $data]);
+
             return $data;
         });
     }
@@ -43,9 +45,10 @@ final readonly class TypicodeService
     public function getPost(int $id)
     {
         return rescue(function () use ($id) {
-            $response = $this->client->get('https://jsonplaceholder.typicode.com/posts/' . $id);
+            $response = $this->client->get('https://jsonplaceholder.typicode.com/posts/'.$id);
             $data = json_decode($response->getBody(), true);
             Log::info('Retrieve a post', ['response' => $data]);
+
             return $data;
         });
     }

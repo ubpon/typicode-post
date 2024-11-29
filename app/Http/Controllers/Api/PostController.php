@@ -14,10 +14,8 @@ class PostController extends Controller
 {
     public function __construct(
         private readonly TypicodeService $typicodeService
-    )
-    {
+    ) {}
 
-    }
     public function index(Request $request)
     {
         return PostResource::collection($this->typicodeService->listPosts());
@@ -29,6 +27,7 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         $data = PostDTO::fromArray($request->validated());
+
         return rescue(fn () => new PostResource($this->typicodeService->storePost($data->toArray())));
     }
 

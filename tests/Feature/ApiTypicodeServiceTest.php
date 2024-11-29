@@ -12,7 +12,7 @@ class ApiTypicodeServiceTest extends TestCase
 
     public function test_get_list_posts()
     {
-        $apiService = new TypicodeService();
+        $apiService = new TypicodeService;
         $posts = $apiService->listPosts();
 
         $this->assertNotEmpty($posts);
@@ -21,7 +21,7 @@ class ApiTypicodeServiceTest extends TestCase
 
     public function test_create_post()
     {
-        $apiService = new TypicodeService();
+        $apiService = new TypicodeService;
         $data = [
             'title' => fake()->sentence(),
             'body' => fake()->paragraph(),

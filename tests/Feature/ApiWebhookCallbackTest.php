@@ -1,7 +1,5 @@
 <?php
 
-
-use App\Services\TypicodeService;
 use Tests\TestCase;
 
 class ApiWebhookCallbackTest extends TestCase
@@ -10,9 +8,9 @@ class ApiWebhookCallbackTest extends TestCase
     {
         $response = $this->withServerVariables(['REMOTE_ADDR' => '127.0.0.1'])
             ->postJson('/callback', [
-            'status' => 'success',
-            'order_id' => 12345,
-        ]);
+                'status' => 'success',
+                'order_id' => 12345,
+            ]);
 
         $response->assertStatus(200);
         $response->assertJson(['message' => 'Success']);

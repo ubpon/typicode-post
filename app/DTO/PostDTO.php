@@ -6,10 +6,7 @@ use Illuminate\Contracts\Support\Arrayable;
 
 final readonly class PostDTO implements Arrayable
 {
-    public function __construct(public string $title, public string $body, public int $userId)
-    {
-
-    }
+    public function __construct(public string $title, public string $body, public int $userId) {}
 
     public static function fromArray(array $data): self
     {
@@ -25,7 +22,7 @@ final readonly class PostDTO implements Arrayable
         return [
             'title' => $this->title,
             'body' => $this->body,
-            'userId' => $this->userId
+            'userId' => $this->userId,
         ];
     }
 }

@@ -16,8 +16,9 @@ class IpWhitelist
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!in_array($request->ip(), config('webhook.trusted_ips'))) {
+        if (! in_array($request->ip(), config('webhook.trusted_ips'))) {
             Log::warning('Untrusted callback source', ['ip' => $request->ip()]);
+
             return response()->json(['message' => 'Unauthorized'], 403);
         }
 

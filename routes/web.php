@@ -12,4 +12,3 @@ Route::get('/', function () {
 Route::post('/callback', [WebhookController::class, 'handleCallback'])
     ->middleware(IpWhitelist::class)
     ->withoutMiddleware([VerifyCsrfToken::class]);
-
